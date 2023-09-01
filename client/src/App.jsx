@@ -7,7 +7,7 @@ function App() {
 
 //calling my name from BE, server.js 
 const callBackEnd = async () => {
-  const response = await fetch('/api/myname');
+  const response = await fetch('/api/weather');
   const data = await response.json();
   console.log(data);
   setMyName(data.name)
@@ -40,4 +40,4 @@ useEffect(() => {
   )
 }
 
-export default App
+export default App;
