@@ -1,11 +1,11 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
+import express from "express";
+import cors from "cors";
+import "dotenv/config";
 
 //create instance of express.js framework application 
 const app = express();
 
-//enable CORS
+//enable CORS middleware
 app.use(cors())
 
 //Set the port that you want the server to run on
@@ -17,16 +17,14 @@ app.get('/api', (req, res) => {
 });
 //creates an endpoint for /api/weather
 app.get('/api/weather', (req, res) => {
-    const city = req.query.cityName;
-    const apiKey = process.env.API_KEY;
-
     const params = new URLSearchParams({
-      q: city,
-      appid: apiKey,
+      q: req.query.city,
+      appid: process.env.API_KEY,
       units: "metric",
     });
     const url = `https://api.openweathermap.org/data/2.5/weather?${params}`;
     //console.log(url)
+
     fetch(url)
     .then((res) => res.json())
     .then((data) => {
