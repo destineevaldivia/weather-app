@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
 import './App.css'
+import WeatherForm from './components/WeatherForm';
+import WeatherCard from './components/WeatherCard';
 
 function App() {
-  const [myname, setMyName] = useState('')
-  const [message, setMessage] = useState('')
+  const [city, setCity] = useState('')
+  const [data, setData] = useState('')
 
-//calling my name from BE, server.js 
-const callBackEnd = async () => {
+//calling searchWeatherByCity fxn from BE, server.js 
+const searchWeatherByCity = async () => {
   const response = await fetch('/api/weather');
-  const data = await response.json();
-  console.log(data);
-  setMyName(data.name)
+  const weatherData = await response.json();
+  //console.log(weatherData);
+  setData(weatherData.data)
 
 };
 //calling message from BE, server.js 
@@ -31,7 +33,7 @@ useEffect(() => {
     <>
       <div>
         <h1> Weather Forecast App </h1>
-        <h5> City: {myname} </h5> 
+        <h5> City: {city} </h5> 
         <h5> Description: {message}  </h5> 
         
   

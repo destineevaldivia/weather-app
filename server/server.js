@@ -1,4 +1,3 @@
-
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
@@ -10,11 +9,11 @@ const app = express();
 app.use(cors())
 
 //Set the port that you want the server to run on
-const PORT = process.env.PORT || 5002;
+const PORT = 5002;
 
 //creates an endpoint for the "root" route, at /api
 app.get('/api', (req, res) => {
-  res.json({ message: 'Hi you are getting my root!, to go /api/weather for my weather app'});
+  res.json({ message: 'This is my rooooot! Go here--->    http://localhost:5173/'   });
 });
 //creates an endpoint for /api/weather
 app.get('/api/weather', (req, res) => {
@@ -24,7 +23,7 @@ app.get('/api/weather', (req, res) => {
     const params = new URLSearchParams({
       q: city,
       appid: apiKey,
-      units: "Metric",
+      units: "metric",
     });
     const url = `https://api.openweathermap.org/data/2.5/weather?${params}`;
     //console.log(url)
@@ -35,6 +34,7 @@ app.get('/api/weather', (req, res) => {
     })
     .catch((err) => {
       console.log(err);
+      //res.send('An error occurred');
     });
 });
 
