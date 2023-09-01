@@ -24,7 +24,7 @@ const loadCity = async (city) => {
   }
   return (
   <>
-<h2> My Weather is</h2>
+<h2> Weather in </h2>
   <div className="weather-form">
       <input
           type="text"
