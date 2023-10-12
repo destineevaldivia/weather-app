@@ -37,27 +37,12 @@ const WeatherForm = (props) => {
           placeholder="Enter city name"
           onChange={(e) => setCity(e.target.value)}
         ></input>
-        <button className="btn" onClick={handleSubmit}>
+        <button className="btn" onClick={loadWeather}>
           Submit
         </button>
-        <div>{!result ? null : <WeatherCard data={result} />}</div>
+        <div>{!result ? null : <WeatherCard data={data} city={city} />}</div>
       </div>
     </div>
-    // <div className="weather">
-    //   <h1 className="App-header"> Weather App </h1>
-    //   <form onSubmit={handleSubmit}>
-    //     <input
-    //       id="city-name"
-    //       type="text"
-    //       placeholder="Please enter the city name"
-    //       name="city"
-    //       value={city}
-    //       onChange={onChange}
-    //       required
-    //     />
-    //     <input type="submit" value="Submit" />
-    //   </form>
-    // </div>
   );
 };
 
