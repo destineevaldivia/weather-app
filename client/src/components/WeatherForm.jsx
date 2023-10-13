@@ -3,30 +3,20 @@ import WeatherCard from "./WeatherCard";
 
 const WeatherForm = (props) => {
   const [city, setCity] = useState("");
-  const [data, setData] = useState(null);
+  const [data, setData] = useState("");
 
   //fetch weather data from BE
-  const loadWeather = async (city) => {
-    const params = new URLSearchParams({ cityName: city });
-    const response = await fetch(`http://localhost:5004/api/weather?${params}`);
+  const loadWeather = async () => {
+    const response = await fetch(
+      `http://localhost:8080/api/weather?city=${city}`
+    );
     const weatherData = await response.json();
 
     setData(weatherData);
+
+    console.log("here is the dataaaa", data);
+    console.log("here is the cityyyy", city);
   };
-
-  // const onChange = (ev) => {
-  //   setCity(ev.target.value);
-  // };
-
-  // const handleSubmit = (ev) => {
-  //   ev.preventDefault();
-  //   props.handleSubmit(city);
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   loadCity(city);
-  // };
 
   return (
     <div>
@@ -40,7 +30,9 @@ const WeatherForm = (props) => {
         <button className="btn" onClick={loadWeather}>
           Submit
         </button>
-        <div>{!result ? null : <WeatherCard data={data} city={city} />}</div>
+        <div>
+          <WeatherCard data={data} city={city} />
+        </div>
       </div>
     </div>
   );
