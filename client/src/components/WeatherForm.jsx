@@ -8,16 +8,15 @@ const WeatherForm = (props) => {
   //fetch weather data from BE
   const loadWeather = async () => {
     const response = await fetch(
-      `http://localhost:8080/api/weather?city=${city}`
+      `http://localhost:8080/api/weather?`
+      // `http://localhost:8080/api/weather?city=${city}`
     );
     const weatherData = await response.json();
-
     setData(weatherData);
 
     console.log("here is the dataaaa", data);
     console.log("here is the cityyyy", city);
   };
-
   return (
     <div>
       <h2> Weather in </h2>
