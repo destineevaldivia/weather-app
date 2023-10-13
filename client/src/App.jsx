@@ -1,5 +1,4 @@
 import WeatherCard from "./components/WeatherCard";
-import "./App.css";
 import { useState } from "react";
 
 function App() {
@@ -13,9 +12,8 @@ function App() {
 
     const response = await fetch(`http://localhost:5004/api/weather?${params}`);
     const weatherData = await response.json();
-
     console.log(weatherData);
-    setResult(weatherData); //<-- this means, result = weatherData;
+    setResult(weatherData);
   };
 
   const handleSubmit = (e) => {
@@ -24,8 +22,8 @@ function App() {
   };
   return (
     <>
-      <h2> Weather in </h2>
-      <div className="weather-form">
+      <h1> Weather in... </h1>
+      <div className="weatherform">
         <input
           type="text"
           id="city"
