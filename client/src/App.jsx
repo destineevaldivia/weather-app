@@ -1,28 +1,44 @@
-import { useState } from "react";
-import "./App.css";
 import WeatherCard from "./components/WeatherCard";
-import WeatherForm from "./components/weatherForm";
+import "./App.css";
+import { useState } from "react";
 
 function App() {
   const [city, setCity] = useState("");
-  const [data, setData] = useState("");
+  const [result, setResult] = useState(null);
 
   //fetch weather data from BE
-  const loadWeather = async () => {
-    const response = await fetch(
-      `http://localhost:8080/api/weather?city=${city}`
-    );
-    const weatherData = await response.json();
-    setData(weatherData);
+  const loadCity = async (city) => {
+    console.log(city);
+    const params = new URLSearchParams({ cityName: city });
 
-    console.log("here is the dataaaa", data);
-    console.log("here is the cityyyy", city);
+    const response = await fetch(`http://localhost:5004/api/weather?${params}`);
+    const weatherData = await response.json();
+
+    console.log(weatherData);
+    setResult(weatherData); //<-- this means, result = weatherData;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    loadCity(city);
   };
   return (
-    <div>
-      <WeatherForm loadWeather={loadWeather} />
-      <WeatherCard />
-    </div>
+    <>
+      <h2> Weather in </h2>
+      <div className="weather-form">
+        <input
+          type="text"
+          id="city"
+          name="city"
+          placeholder="Enter city name"
+          onChange={(e) => setCity(e.target.value)}
+        ></input>
+        <button className="btn" onClick={handleSubmit}>
+          Submit
+        </button>
+        <div>{!result ? null : <WeatherCard data={result} />}</div>
+      </div>
+    </>
   );
 }
 export default App;

@@ -1,38 +1,32 @@
 import { useState } from "react";
-import WeatherCard from "./WeatherCard";
 
 const WeatherForm = (props) => {
   const [city, setCity] = useState("");
-  const [data, setData] = useState("");
 
-  //fetch weather data from BE
-  const loadWeather = async () => {
-    const response = await fetch(
-      `http://localhost:8080/api/weather?`
-      // `http://localhost:8080/api/weather?city=${city}`
-    );
-    const weatherData = await response.json();
-    setData(weatherData);
-
-    console.log("here is the dataaaa", data);
-    console.log("here is the cityyyy", city);
+  const onChange = (ev) => {
+    setCity(ev.target.value);
   };
+
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+    props.handleSubmit(city);
+  };
+
   return (
-    <div>
-      <h2> Weather in </h2>
-      <div className="weather-form">
+    <div className="weather">
+      <h1 className="App-header"> Weather App </h1>
+      <form onSubmit={handleSubmit}>
         <input
+          id="city-name"
           type="text"
-          placeholder="Enter city name"
-          onChange={(e) => setCity(e.target.value)}
-        ></input>
-        <button className="btn" onClick={loadWeather}>
-          Submit
-        </button>
-        <div>
-          <WeatherCard data={data} city={city} />
-        </div>
-      </div>
+          placeholder="Please enter the city name"
+          name="city"
+          value={city}
+          onChange={onChange}
+          required
+        />
+        <input type="submit" value="Submit" />
+      </form>
     </div>
   );
 };
