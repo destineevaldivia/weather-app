@@ -1,9 +1,8 @@
 import { useState } from "react";
 
 const MakeFavorite = ({ favoriteCity }) => {
-  //fave city is this
-  const [name, setName] = useState(""); //name is now DEstinee
-  const [fave, setFave] = useState({
+  const [name, setName] = useState("");
+  const [faveData, setFaveData] = useState({
     id: "",
     user_name: "",
     favorite_city: "",
@@ -11,15 +10,20 @@ const MakeFavorite = ({ favoriteCity }) => {
 
   const handleSaveFave = (e) => {
     e.preventDefault();
-    //update fave state such that user_name is name state
-    //update fave such that favorite  city = {favorite city} props
-    setFave({
+    //updates 'fave' state
+    setFaveData({
       ...fave,
       user_name: name,
       favorite_city: favoriteCity,
     });
 
-    //does a post request
+    // Sends a POST request to the server with the 'faveData' as JSON data
+    const payload = JSON.stringify(faveData);
+    fetch("URLhttp://localhost:8080/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: payload,
+    });
   };
   return (
     <div className="favorite-container">

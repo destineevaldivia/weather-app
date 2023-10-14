@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
     message: "This is my rooooot! Go here--->    http://localhost:5173/",
   });
 });
-//creates an endpoint for /api/weather
+//GET from public OpenWeather api
 app.get("/api/weather", (req, res) => {
   const city = req.query.cityName;
   const APIKEY = process.env.API_KEY;
@@ -40,6 +40,23 @@ app.get("/api/weather", (req, res) => {
     });
 });
 
+// POST request
+app.post("/api/home", async (req, res) => {
+  try {
+    const newFave = {
+      user_name: req.body.user_name,
+      favorite_city: req.body.favorite_city,
+    };
+    const result = await db.query(
+      "INSERT INTO users(user_name, favorite_city) VALUES ($1, $2) RETURN *",
+      [newFave.user_name, newFave.favorite_city]
+    );
+    res.json(results.rows[0]);
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({ error: err.message });
+  }
+});
 // console.log that your server is up and running
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
