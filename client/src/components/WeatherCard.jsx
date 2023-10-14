@@ -1,6 +1,6 @@
 import MakeFavorite from "./MakeFavorite";
 
-const WeatherCard = (props) => {
+const WeatherCard = (props, { loadCity }) => {
   return (
     <div className="weathercard">
       <img
@@ -14,7 +14,7 @@ const WeatherCard = (props) => {
       <p>{props.data.data.weather[0].description}</p>
       <h3> Temperature(Celcius): </h3>
       <p>{props.data.data.main.temp}</p>
-      <MakeFavorite favoriteCity={props.data.data.name} />
+      <MakeFavorite favoriteCity={props.data.data.name} loadCity={loadCity} />
     </div>
   );
 };

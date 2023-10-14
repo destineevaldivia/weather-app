@@ -35,7 +35,9 @@ function App() {
             Search
           </button>
         </form>
-        <div>{!result ? null : <WeatherCard data={result} />}</div>
+        <div>
+          {!result ? null : <WeatherCard data={result} loadCity={loadCity} />}
+        </div>
       </div>
     </>
   );
