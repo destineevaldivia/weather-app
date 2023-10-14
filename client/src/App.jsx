@@ -1,3 +1,4 @@
+import MakeFavorite from "./components/MakeFavorite";
 import WeatherCard from "./components/WeatherCard";
 import { useState } from "react";
 

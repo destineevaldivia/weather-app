@@ -61,20 +61,23 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-/* .card {
-  padding: 2em;
-} */
 .weathercard {
-  background-color: rgb(226, 232, 226);
+  color: #040303;
+  background-color: rgb(219, 221, 219);
   padding: 20px;
   margin: 20px;
 }
-/* .weather {
-  color: pink;
-} */
-/* .App-header {
-  color: pink;
-} */
+.weatherform {
+  color: rgb(69, 73, 67);
+  background-color: #a4afb8;
+  padding: 20px;
+}
+.favorite-container {
+  color: rgb(136, 131, 131);
+  border: 2px;
+  padding: 5px;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
