@@ -1,27 +1,37 @@
 import { useState } from "react";
 
 const MakeFavorite = ({ favoriteCity }) => {
-  //   const [name, setName] = useState({
-  //     id: "",
-  //     user_name: "", req.body.user_name
-  //     favorite_city: favoriteCity req.body.favorite_city
-  //   });
+  //fave city is this
+  const [name, setName] = useState(""); //name is now DEstinee
+  const [fave, setFave] = useState({
+    id: "",
+    user_name: "",
+    favorite_city: "",
+  });
 
-  //   const handleChange = (event) => {
-  //     const name = event.target.user_name;
-  //     const value = event.target.value;
-  //     setName((values)
-  //   };
+  const handleSaveFave = (e) => {
+    e.preventDefault();
+    //update fave state such that user_name is name state
+    //update fave such that favorite  city = {favorite city} props
+    setFave({
+      ...fave,
+      user_name: name,
+      favorite_city: favoriteCity,
+    });
+
+    //does a post request
+  };
   return (
     <div className="favorite-container">
-      <form onSubmit="">
+      <form onSubmit={handleSaveFave}>
+        {" "}
+        //update fave state with name
         <input
           type="text"
           name="user_name"
           placeholder="Enter your name"
-          //   value={formData.user_name}
-          //   onChange={handleChange}
-        ></input>
+          onChange={({ target }) => setName(target.value)}
+        />
         <button type="submit">Save as my favorite city</button>
       </form>
     </div>
