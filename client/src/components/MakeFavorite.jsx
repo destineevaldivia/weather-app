@@ -11,7 +11,7 @@ const MakeFavorite = ({ favoriteCity, loadCity }) => {
   const handleSaveFave = (e) => {
     e.preventDefault();
     setFaveData({
-      ...fave,
+      ...faveData,
       user_name: name,
       favorite_city: favoriteCity,
     });
