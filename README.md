@@ -10,4 +10,4 @@ MakeFavorite.jsx - Generates a form for adding a name and favorite city to my da
 
 Database: Using PostgresSQL. See bd.sql file for the schema.
 
-![screenshot](<Screenshot 2023-10-13 at 3.55.29 PM.png>)
+![screenshot](<Screenshot 2023-10-16 at 10.54.57 AM.png>)
