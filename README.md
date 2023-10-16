@@ -9,3 +9,5 @@ WeatherCard.jsx- Accepts props from parent and renders the data about the weathe
 MakeFavorite.jsx - Generates a form for adding a name and favorite city to my database
 
 Database: Using PostgresSQL. See bd.sql file for the schema.
+
+![screenshot](<Screenshot 2023-10-13 at 3.55.29 PM.png>)
